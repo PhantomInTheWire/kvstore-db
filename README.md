@@ -1,4 +1,4 @@
-# kvstore-db: High-Performance Key-Value Storage
+# kvstore-db: High-Performance Key-Value Storage(NoSQL DB)
 
 ## Overview
 
