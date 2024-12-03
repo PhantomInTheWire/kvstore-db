@@ -1,8 +1,8 @@
-# ActionKV: High-Performance Key-Value Storage
+# kvstore-db: High-Performance Key-Value Storage
 
 ## Overview
 
-`actionkv` is a robust key-value storage library that implements the Bitcask storage format, a cutting-edge approach to persistent data storage renowned for its performance, reliability, and simplicity.
+`kvstore-db` is a robust key-value storage library that implements the Bitcask storage format, a cutting-edge approach to persistent data storage renowned for its performance, reliability, and simplicity.
 
 ## Background: The Bitcask Storage Format
 
