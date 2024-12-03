@@ -7,19 +7,10 @@
 ## Background: The Bitcask Storage Format
 
 ### Origins in Riak
-Bitcask was originally developed for Riak, a pioneering NoSQL database that emerged during the early 2010s NoSQL movement. While contemporaries like MongoDB and Apache CouchDB focused on speed, Riak distinguished itself with an unwavering commitment to data durability and resilience.
+Bitcask was originally developed for Riak.
+Riak, a NoSQL database, was developed during the height of the NoSQL movement and competed against similar systems such as MongoDB, Apache CouchDB, and Tokyo Tyrant. It distinguished itself with its emphasis on resilience to failure. Although it was slower than its peers, it guaranteed that it never lost data. That guarantee was enabled in part because of its smart choice of a data format. 
 
-### What Makes Bitcask Special?
-
-**Core Characteristics:**
-- **Log-Structured Hash Table (LSHT)**: A storage paradigm optimized for high-performance writes and rapid key lookups
-- **Append-Only Design**: Ensures data integrity and enables fast, sequential writes
-- **Predictable Performance**: Provides consistent read and write latencies
-- **Simple Recovery**: Straightforward mechanism for data reconstruction in case of system failure
-
-### Technical Details
-
-#### Record Layout
+### Record Layout
 Bitcask stores each record with a precise, well-defined structure:
 
 ![Bitcask Record Format](https://github.com/user-attachments/assets/c9c4a5f2-639d-4775-b029-071a1ae1fa36)
