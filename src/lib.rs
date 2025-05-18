@@ -30,12 +30,12 @@ pub struct ActionKV {
 
 impl ActionKV {
     pub fn open(path: &Path) -> io::Result<Self> {
-        let f = OpenOptions::new() 
+        let f = OpenOptions::new()
             // relevant option set.
-            .read(true) 
-            .write(true) 
+            .read(true)
+            .write(true)
             .create(true)
-            .append(true) 
+            .append(true)
             .open(path)?;
         Ok(ActionKV {
             f,

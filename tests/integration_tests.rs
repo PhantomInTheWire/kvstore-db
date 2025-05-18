@@ -1,11 +1,11 @@
 #[cfg(test)]
 mod integration_tests {
 
-    use std::io::ErrorKind;
-    use std::path::Path;
     use byteorder::{LittleEndian, WriteBytesExt};
     use crc32fast::Hasher;
     use libactionkv::ActionKV;
+    use std::io::ErrorKind;
+    use std::path::Path;
 
     #[test]
     fn test_insert_and_get() -> std::io::Result<()> {
@@ -75,9 +75,9 @@ mod integration_tests {
 
     #[test]
     fn test_process_record() -> std::io::Result<()> {
-        use std::io::Cursor;
         use byteorder::{LittleEndian, WriteBytesExt};
         use crc32fast::Hasher;
+        use std::io::Cursor;
 
         let key = b"key1";
         let value = b"value1";

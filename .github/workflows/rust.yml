@@ -10,16 +10,31 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
+  format:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
       - name: Install Rust
         run: rustup toolchain install stable --profile minimal
       - name: Format
         run: cargo fmt --all -- --check
+
+  build:
+    runs-on: ubuntu-latest
+    needs: format
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Rust
+        run: rustup toolchain install stable --profile minimal
       - name: Build
         run: cargo build --verbose
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Rust
+        run: rustup toolchain install stable --profile minimal
       - name: Run tests
         run: cargo test --verbose

@@ -1,9 +1,9 @@
 #[cfg(test)]
 mod tests {
-    use std::io::Cursor;
+    use crate::ActionKV;
     use byteorder::{LittleEndian, WriteBytesExt};
     use crc32fast::Hasher;
-    use crate::ActionKV;
+    use std::io::Cursor;
 
     #[test]
     fn test_process_record() -> std::io::Result<()> {
@@ -33,9 +33,9 @@ mod tests {
 
     #[test]
     fn test_process_record_invalid_checksum() -> std::io::Result<()> {
-        use std::io::Cursor;
         use byteorder::{LittleEndian, WriteBytesExt};
         use crc32fast::Hasher;
+        use std::io::Cursor;
 
         let key = b"key1";
         let value = b"value1";
@@ -66,8 +66,8 @@ mod tests {
     }
     #[test]
     fn test_open() -> std::io::Result<()> {
-        use std::path::Path;
         use std::fs;
+        use std::path::Path;
 
         let path = Path::new("test_open.akv");
         // Clean up the file if it exists from a previous run
@@ -84,8 +84,8 @@ mod tests {
     }
     #[test]
     fn test_insert_and_get() -> std::io::Result<()> {
-        use std::path::Path;
         use std::fs;
+        use std::path::Path;
 
         let path = Path::new("test_insert_and_get.akv");
         if path.exists() {
@@ -118,8 +118,8 @@ mod tests {
     }
     #[test]
     fn test_load() -> std::io::Result<()> {
-        use std::path::Path;
         use std::fs;
+        use std::path::Path;
 
         let path = Path::new("test_load.akv");
         if path.exists() {
@@ -154,8 +154,8 @@ mod tests {
     }
     #[test]
     fn test_delete() -> std::io::Result<()> {
-        use std::path::Path;
         use std::fs;
+        use std::path::Path;
 
         let path = Path::new("test_delete.akv");
         if path.exists() {
@@ -180,8 +180,8 @@ mod tests {
     }
     #[test]
     fn test_update() -> std::io::Result<()> {
-        use std::path::Path;
         use std::fs;
+        use std::path::Path;
 
         let path = Path::new("test_update.akv");
         if path.exists() {
@@ -208,9 +208,9 @@ mod tests {
     }
     #[test]
     fn test_seek_to_end() -> std::io::Result<()> {
-        use std::path::Path;
         use std::fs;
         use std::io::Seek;
+        use std::path::Path;
 
         let path = Path::new("test_seek_to_end.akv");
         if path.exists() {
@@ -234,9 +234,9 @@ mod tests {
     }
     #[test]
     fn test_get_at() -> std::io::Result<()> {
-        use std::path::Path;
         use std::fs;
         use std::io::Seek;
+        use std::path::Path;
 
         let path = Path::new("test_get_at.akv");
         if path.exists() {
