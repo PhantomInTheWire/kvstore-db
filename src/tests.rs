@@ -1,9 +1,9 @@
 #[cfg(test)]
 mod tests {
 
-    use std::path::Path;
-    use std::io::ErrorKind;
     use crate::ActionKV;
+    use std::io::ErrorKind;
+    use std::path::Path;
 
     #[test]
     fn test_insert_and_get() -> std::io::Result<()> {

@@ -2,10 +2,10 @@
 //extern crate serde_derive;
 //extern crate byteorder;
 
+use byteorder::*;
 use byteorder::{LittleEndian, ReadBytesExt, WriteBytesExt};
 use crc32fast::Hasher;
 use serde_derive::*;
-use byteorder::*;
 use std::collections::HashMap;
 use std::fs::{File, OpenOptions};
 use std::io;
