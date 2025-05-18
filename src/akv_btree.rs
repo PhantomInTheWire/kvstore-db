@@ -315,8 +315,6 @@ fn main() {
                 } // needs to use Debug as [u8] is arbitrary bytes
             }
         }
-        // Other actions can actually remain as-is. In a long-standing application, it would be
-        // necessary to clean up the index. As this utility is one-shot, it isn't essential here.
         "delete" => index.delete(&key),
         "insert" | "update" => {
             let value = maybe_value.expect(&USAGE).as_ref();
@@ -325,21 +323,4 @@ fn main() {
         }
         _ => eprintln!("{}", &USAGE),
     }
-}
-
-mod test {
-    use super::*;
-
-    //    #[test]
-    //    fn test_order_and_occupancy_rates() {
-    //        let even = BPlusTree::new(8);
-    //        assert_eq!(even.max_occupancy(), 7);
-    //        assert_eq!(even.min_leaf_occupancy(), 4);
-    //        assert_eq!(even.min_branch_occupancy(), 3);
-    //
-    //        let odd = BPlusTree::new(7);
-    //        assert_eq!(odd.max_occupancy(), 6);
-    //        assert_eq!(odd.min_leaf_occupancy(), 3);
-    //        assert_eq!(odd.min_branch_occupancy(), 3);
-    //    }
 }

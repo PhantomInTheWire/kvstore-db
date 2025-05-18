@@ -22,7 +22,7 @@ pub struct KeyValuePair {
     pub value: ByteString,
 }
 
-#[derive(Debug)] // #[derive(Debug)]
+#[derive(Debug)]
 pub struct ActionKV {
     f: File,
     pub index: HashMap<ByteString, u64>,
@@ -30,12 +30,12 @@ pub struct ActionKV {
 
 impl ActionKV {
     pub fn open(path: &Path) -> io::Result<Self> {
-        let f = OpenOptions::new() // An example of the "Builder" pattern. Each method returns a new instance of the OpenOptions struct with the
+        let f = OpenOptions::new() 
             // relevant option set.
-            .read(true) // Enable reading
-            .write(true) // Enable writing (not strictly necessary, as it's implied by append)
-            .create(true) // Create a file at `path` if ir doesn't already exist
-            .append(true) // Don't delete any content that's already been written to disk.
+            .read(true) 
+            .write(true) 
+            .create(true)
+            .append(true) 
             .open(path)?;
         Ok(ActionKV {
             f,
@@ -44,7 +44,7 @@ impl ActionKV {
     }
 
     /// Assumes that f is already at the right place in the file
-    fn process_record<R: Read>(f: &mut R) -> io::Result<KeyValuePair> {
+    pub fn process_record<R: Read>(f: &mut R) -> io::Result<KeyValuePair> {
         let saved_checksum = f.read_u32::<LittleEndian>()?;
         let key_len = f.read_u32::<LittleEndian>()?;
         let val_len = f.read_u32::<LittleEndian>()?;
@@ -58,10 +58,13 @@ impl ActionKV {
         let checksum = hasher.finalize();
 
         if checksum != saved_checksum {
-            panic!(
-                "data corruption encountered ({:08x} != {:08x})",
-                checksum, saved_checksum
-            );
+            return Err(io::Error::new(
+                io::ErrorKind::InvalidData,
+                format!(
+                    "data corruption encountered ({:08x} != {:08x})",
+                    checksum, saved_checksum
+                ),
+            ));
         }
 
         let val = data.split_off(key_len as usize);
