@@ -1,9 +1,11 @@
-#[macro_use]
-extern crate serde_derive;
-extern crate byteorder;
+//#[macro_use]
+//extern crate serde_derive;
+//extern crate byteorder;
 
 use byteorder::{LittleEndian, ReadBytesExt, WriteBytesExt};
 use crc32fast::Hasher;
+use serde_derive::*;
+use byteorder::*;
 use std::collections::HashMap;
 use std::fs::{File, OpenOptions};
 use std::io;
@@ -67,7 +69,6 @@ impl ActionKV {
 
         Ok(KeyValuePair { key, value: val })
     }
-
 
     pub fn seek_to_end(&mut self) -> io::Result<u64> {
         //let mut f = BufReader::new(&mut self.f);
@@ -201,3 +202,5 @@ impl ActionKV {
         self.insert(key, b"")
     }
 }
+
+mod tests;
