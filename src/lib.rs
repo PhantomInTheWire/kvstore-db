@@ -199,7 +199,8 @@ impl ActionKV {
 
     #[inline]
     pub fn delete(&mut self, key: &ByteStr) -> io::Result<()> {
-        self.insert(key, b"")
+        self.index.remove(key);
+        Ok(())
     }
 }
 

@@ -10,9 +10,20 @@ mod tests {
         let path = Path::new("test.akv");
         let mut akv = ActionKV::open(&path)?;
 
+        // Test insert and get
         akv.insert(b"key1", b"value1")?;
         let value = akv.get(b"key1")?;
         assert_eq!(value, Some(b"value1".to_vec()));
+
+        // Test update
+        akv.insert(b"key1", b"value2")?;
+        let value = akv.get(b"key1")?;
+        assert_eq!(value, Some(b"value2".to_vec()));
+
+        // Test delete
+        akv.delete(b"key1")?;
+        let value = akv.get(b"key1")?;
+        assert_eq!(value, None);
 
         std::fs::remove_file(path).map_err(|e| {
             if e.kind() == ErrorKind::NotFound {
